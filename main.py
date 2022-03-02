@@ -1,7 +1,7 @@
-# https://www.kaggle.com/wolfram77/puzzlef-pagerank-seq
+# https://www.kaggle.com/wolfram77/puzzlef-pagerank-seq-update
 import os
 from IPython.display import FileLink
-src="pagerank-seq"
+src="pagerank-seq-update"
 inp="/kaggle/input/graphs"
 out="{}.txt".format(src)
 !printf "" > "$out"
