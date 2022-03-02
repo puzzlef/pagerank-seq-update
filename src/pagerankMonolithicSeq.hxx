@@ -24,7 +24,7 @@ int pagerankMonolithicSeqLoop(vector<T>& a, vector<T>& r, vector<T>& c, const ve
     pagerankCalculate(a, c, vfrom, efrom, i, n, c0);  // assume contribtions (c) is precalculated
     T el = pagerankError(a, r, i, n, EF); ++l;        // one iteration complete
     if (el<E || l>=L) break;                          // check tolerance, iteration limit
-    multiply(c, a, f, i, n);                          // update partial contributions (c)
+    multiplyValues(a, f, c, i, n);                    // update partial contributions (c)
     swap(a, r);                                       // final ranks always in (a)
   }
   return l;
@@ -45,7 +45,7 @@ int pagerankMonolithicSeqLoop(vector<T>& a, vector<T>& r, vector<T>& c, const ve
 template <class G, class H, class T=float>
 PagerankResult<T> pagerankMonolithicSeq(const G& x, const H& xt, const vector<T> *q=nullptr, const PagerankOptions<T>& o={}) {
   int  N  = xt.order();  if (N==0) return PagerankResult<T>::initial(xt, q);
-  auto ks = vertices(xt);
+  auto ks = vertexKeys(xt);
   return pagerankSeq(xt, ks, 0, N, pagerankMonolithicSeqLoop<T>, q, o);
 }
 
